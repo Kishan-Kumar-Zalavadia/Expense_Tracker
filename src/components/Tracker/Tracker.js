@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import './Tracker.css';
 import fire from '../../config/Fire';
 import Transaction from './Transaction/Transaction';
+//const time = new Date().toLocaleTimeString();
+const current = new Date();
+const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
+var showDate=new Date();
+var dt = showDate.toDateString();
+var time = ((showDate.getHours()<10?'0':'') + showDate.getHours())+':'+((showDate.getMinutes()<10?'0':'') + showDate.getMinutes())+' '+ (showDate.getHours>=12?'pm':'am');
 class Tracker extends Component {
 
     state = {
         transactions: [],
         money: 0,
-
         transactionName: '',
         transactionType: '',
         price: '',
+        time: time,
+        date, date,
         currentUID: fire.auth().currentUser.uid
     }
-
     // logout function
     logout = () => {
         fire.auth().signOut();
@@ -28,7 +34,7 @@ class Tracker extends Component {
 
     // add transaction
     addNewTransaction = () => {
-        const {transactionName, transactionType, price, currentUID, money} = this.state;
+        const {transactionName, transactionType, price, time, date, currentUID, money} = this.state;
 
         // validation
         if(transactionName && transactionType && price){
@@ -39,6 +45,8 @@ class Tracker extends Component {
                 name: transactionName,
                 type: transactionType,
                 price: price,
+                time: time,
+                date: date,
                 user_id: currentUID
             });
             
@@ -47,6 +55,8 @@ class Tracker extends Component {
                 name: transactionName,
                 type: transactionType,
                 price: price,
+                time: time,
+                date, date,
                 user_id: currentUID
             }).then((data) => {
                 //success callback
@@ -56,7 +66,9 @@ class Tracker extends Component {
                     money: transactionType === 'deposit' ? money + parseFloat(price) : money - parseFloat(price),
                     transactionName: '',
                     transactionType: '',
-                    price: ''
+                    price: '',
+                    time: time,
+                    date: date
                 })
             }).catch((error)=>{
                 //error callback
@@ -84,6 +96,8 @@ class Tracker extends Component {
                     id: childSnapshot.val().id,
                     name: childSnapshot.val().name,
                     type: childSnapshot.val().type,
+                    time: childSnapshot.val().time,
+                    date: childSnapshot.val().date,
                     price: childSnapshot.val().price,
                     user_id: childSnapshot.val().user_id
                 });
@@ -102,7 +116,7 @@ class Tracker extends Component {
             <div className="trackerBlock">
                 <div className="welcome">
                     <span>Hi, {currentUser.displayName}!</span>
-                    <button className="exit" onClick={this.logout}>Exit</button>
+                    <button className="exit" onClick={this.logout}>Logout</button>
                 </div>
                 <div className="totalMoney">${this.state.money}</div>
 
@@ -115,30 +129,31 @@ class Tracker extends Component {
                                 placeholder="Transaction Name"
                                 type="text"
                                 name="transactionName"
+                                className='transactionName'
                             />
                             <div className="inputGroup">
                                 <select name="type"
                                     onChange={this.handleChange('transactionType')}
                                     value={this.state.transactionType}>
-                                    <option value="0">Type</option>
-                                    <option value="expense">Expense</option>
-                                    <option value="deposit">Deposit</option>
+                                    <option value="0" className='default'>Type</option>
+                                    <option className='expense' value="expense">Expense</option>
+                                    <option className='deposit' value="deposit">Deposit</option>
                                 </select>
                                 <input
                                     onChange={this.handleChange('price')}
                                     value={this.state.price}
                                     placeholder="Price"
-                                    type="text"
+                                    type="number"
                                     name="price"
                                 />
                             </div>
                         </form>
-                        <button onClick={() => this.addNewTransaction()} className="addTransaction">+ Add Transaction</button>
+                        <button onClick={() => this.addNewTransaction()} className="addTransaction">Add Transaction</button>
                     </div>
                 </div>
                 
                 <div className="latestTransactions">
-                    <p>Latest Transactions</p>
+                    <p>Transactions</p>
                     <ul>
                         {
                             Object.keys(this.state.transactions).map((id) => (
@@ -146,8 +161,10 @@ class Tracker extends Component {
                                     type={this.state.transactions[id].type}
                                     name={this.state.transactions[id].name}
                                     price={this.state.transactions[id].price}
+                                    time={this.state.transactions[id].time}
+                                    date={this.state.transactions[id].date}
                                 />
-                            ))
+                            )).reverse()
                         }
                     </ul>
                 </div>

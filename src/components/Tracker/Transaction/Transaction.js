@@ -1,9 +1,11 @@
 import React from 'react';
+import '../Tracker.css';
 
 const Transaction = props => {
     return (
         <li>
-            <div>{props.name}</div>
+            <div className='container'>
+            <div className='name'>{props.name}</div>
             <div>{props.type === 'deposit' ? (
                 <span className="deposit"> +{props.price} </span>
             ) : (
@@ -11,6 +13,9 @@ const Transaction = props => {
                     -{props.price}
                 </span>
             )}</div>
+            <div>{props.time}</div>
+            <div>{props.date}</div>
+            </div>
         </li>
     );
 }

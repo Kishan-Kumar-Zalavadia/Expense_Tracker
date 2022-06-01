@@ -1,22 +1,30 @@
 .regField {
     width: 100%;
-    background-color: #f7f7f7;
-    color: #000;
-    border: 1px solid #ddd;
+    background-color: black;
+    color: white;
     padding: 15px;
+    margin: 10px 0px;
     box-sizing: border-box;
     font-size: 15px;
+    border: none;
+    border-bottom: 1px solid #ddd;
 }
 
 .submitBtn {
     width: 100%;
-    background: #425f9c;
-    border: 0;
-    color: #fff;
     padding: 15px;
     margin: 10px 0 0 0;
     font-size: 15px;
     cursor: pointer;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 50px;
+    color: white;
+}
+.submitBtn:hover{
+    background-color: white;
+    border: 2px solid black;
+    color: black;
 }
 
 .underLine {
@@ -29,13 +37,13 @@
     border: 0;
     background-color: unset;
     text-decoration: underline;
-    color: #3c4043;
+    color: white;
     padding: 0;
     margin: 0;
 }
 
 .linkBtn:hover {
-    color: blue;
+    color: rgb(98, 98, 98);
     cursor: pointer;
 }
 

@@ -4,24 +4,26 @@
     /* background-color: #E9E9E9; */
     padding: 20px;
     width: 100%;
-    max-width: 350px;
-    margin: 100px auto;
+    max-width: 450px;
+    margin: 10px auto;
     display: table;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .welcome {
-    color: #fff;
+    color: white;
+    font-weight: 600;
+    font-size: 23px;
     display: flex;
     justify-content: space-between;
     margin: 0;
-    text-shadow: 0px 5px 3px #292929;
+    /* text-shadow: 0px 5px 3px #292929; */
 }
 .totalMoney {
     color: #fff;
     font-size: 20px;
     margin:0 0 10px;
-    text-shadow: 0px 5px 3px #292929;
+    /* text-shadow: 0px 5px 3px #292929; */
 }
 
 .newTransaction {
@@ -31,22 +33,39 @@
     display: table;
     width: 100%;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: black;
     border: 0;
     padding: 10px;
     margin:0 0 10px;
     font-size: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .newTransaction input[type="text"],
+.newTransaction input[type="number"],
 .newTransaction select{
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
     font-size: 13px;
     padding: 7px;
+    margin: 5px 0px;
 }
+
+
+
+/* Remove Spinner */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+/* Remove Spinner End*/
+
+
 
 .newTransaction input[type="text"]:focus,
 .newTransaction select:focus{
@@ -57,21 +76,48 @@
     display:flex;
     justify-content: center;
 }
+.inputGroup select{
+    margin-right: 5px;
+}
+.inputGroup option{
+    background-color: black;
+}
+.inputGroup .default{
+    color: white;
+}
+
+.inputGroup select{
+    background-color: black;
+    color: gray;
+}
+
+.inputGroup input{
+    background-color: black;
+    color: white;
+}
+
+.transactionName{
+    color: white;
+    background-color: black;
+}
 
 .addTransaction {
     text-align: center;
-    color: #ffffff;
     border-radius: 3px;
-    background-color: #425f9c;
-    border: 0;
     margin: 5px 0 0;
     padding: 5px 10px;
     font-size: 15px;
+    border-radius: 50px;
     cursor: pointer;
+    background-color: black;
+    border: 2px solid white;
+    color: white;
 }
 
 .addTransaction:hover {
-    background-color: #274177;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
 }
 
 .addTransaction:focus{
@@ -82,10 +128,11 @@
 
 .latestTransactions {
     margin: 10px 0 0 0;
-    background-color: #fff;
+    background-color: black;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .latestTransactions p{
@@ -123,14 +170,24 @@ ul li:last-child{
 }
 
 .exit {
-    background-color: #fff;
     border: 0;
     border-radius: 3px;
     color: red;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 30px;
+    width: 60px;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 50px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .exit:hover {
     background-color: #f1f1f1;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
 }
